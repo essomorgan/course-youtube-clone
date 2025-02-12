@@ -1,6 +1,7 @@
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import Image from 'next/image';
 import Link from 'next/link';
+import { SearchInput } from './search-input';
 
 export const HomeNavbar = () => {
 	return (
@@ -15,6 +16,10 @@ export const HomeNavbar = () => {
 							<p className='text-xl font-semibold tracking-tight'>NewTube</p>
 						</div>
 					</Link>
+				</div>
+				{/* Search Bar */}
+				<div className='flex-1 flex justify-center max-w-[720px] mx-auto'>
+					<SearchInput />
 				</div>
 			</div>
 		</nav>
