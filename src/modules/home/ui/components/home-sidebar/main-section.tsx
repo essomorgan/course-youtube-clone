@@ -30,7 +30,7 @@ export const MainSection = () => {
 				<SidebarMenu>
 					{items.map((item) => (
 						<SidebarMenuItem key={item.title}>
-              {/* TBD: Change to look at current pathnamee & set click event */}
+              {/* TBD: Change to look at current pathname & set click event */}
 							<SidebarMenuButton tooltip={item.title} asChild isActive={false} onClick={() => {}}>
 								<Link href={item.url} className='flex items-center gap-4'>
 									<item.icom />
