@@ -1,36 +1,38 @@
 'use client';
 
-import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-import { FlameIcon, HomeIcon, PlaySquareIcon } from 'lucide-react';
+import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { HistoryIcon, ListVideoIcon, ThumbsUpIcon } from 'lucide-react';
 import Link from 'next/link';
 
 const items = [
 	{
-		title: 'Home',
-		url: '/',
-		icom: HomeIcon,
-	},
-	{
-		title: 'Subscriptions',
-		url: '/feed/subscrptions',
-		icom: PlaySquareIcon,
+		title: 'History',
+		url: '/playlists/history',
+		icom: HistoryIcon,
 		auth: true,
 	},
 	{
-		title: 'Trending',
-		url: '/feed/trending',
-		icom: FlameIcon,
+		title: 'Liked Videos',
+		url: '/playlists/liked',
+		icom: ThumbsUpIcon,
+		auth: true,
+	},
+	{
+		title: 'All playlists',
+		url: '/playlists',
+		icom: ListVideoIcon,
+		auth: true,
 	},
 ];
 
-export const MainSection = () => {
+export const UserSection = () => {
 	return (
 		<SidebarGroup>
+			<SidebarGroupLabel>You</SidebarGroupLabel>
 			<SidebarGroupContent>
 				<SidebarMenu>
 					{items.map((item) => (
 						<SidebarMenuItem key={item.title}>
-              {/* TBD: Change to look at current pathnamee & set click event */}
 							<SidebarMenuButton tooltip={item.title} asChild isActive={false} onClick={() => {}}>
 								<Link href={item.url} className='flex items-center gap-4'>
 									<item.icom />
