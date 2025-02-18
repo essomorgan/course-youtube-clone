@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](https://www.youtube.com/watch?v=ArmPzvHTcfQ) course.
 
-## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 01 Setup
+	- Configure environment
+		- runtime(Node.js or ==Bun==)
+    - package manager(npm, pnpm, yarn, ==bun==)
+  - Why bun?
+    - You will get the same environment as I do
+    - Easily run Typescript scripts with ES6 imports
+    - Less issues with dependency issues regarding React 19
+      - (npm throws an error, yarn throws a warning, bun simply works)
+  - Establish basic Bun commands
+    - bun add === npm install
+    - bunx === npx
+- 02 Basic layout
+  - Add logo asset
+  - Learn basic app router folders
+  - Sidebar component
+    - Sidebar sections
+    - Sidebar items
+  - Navbar
+    - Search input
+    - Sign-in component 
+- 03 Authentication
+  - Integrate clerk
+  - Add Sign-in screens
+  - Add UserButton
+  - Add middleware
+  - Use auth state on sidebar sections
+  - Protect routes
+- 04 Database setup
+  - Configure database
+    - Create a [PostgreSQL database](www.neon.tech)
+    - Setup DrizzleORM
+    - Create schema - users
+    - Migrate changes to database
+  - Learn how to use drizzle-kit
+  - Why DrizzleORM?
+    - Only ORM with both reational and SQL-like query APIs
+    - Serverless by default
+    - Forcingg us to **understand** our queries
+- 05 Webhook sync
+  - Create ngrok account (or any other local tunnel solution)
+  - Obtain a static domain (not required, but easier development)
+  - Add script to concurrently run local tunnel & app
+  - Create the users webhook
+  - Connect the webhook on Clerk dashboard
+- 06 tPRC setup
+  - Why tPRC?
+    - end to end typesafety
+    - familiar hooks (useQuery, useMutation, etc.)
+    - v11 allows us to do authenticated prefetching
+  - Why not X?
+    - not possible to prefetch authenticated queries
+  - Why prefetch?
+    - **render as you fetch** concept
+    - leverage RSCS as **loaders**
+    - faster laod time
+    - parallel data loading
+- 07 tPRC configuration
+  - Enable transformer on tRPC
+  - Add auth to tRPC context
+  - Add protectedProcedure
+  - Add rate limiting
+- 08 Video categories
+  - Create schema - categories
+  - Push changes to database
+  - Seed categories
+  - Prefetch categories
+  - Create categories component
+- 09 Studio layout
+  - Create studio route group
+  - Create studio layout
+  - Protect studio routes
