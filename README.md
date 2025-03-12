@@ -73,3 +73,8 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Create studio route group
   - Create studio layout
   - Protect studio routes
+- 10 Studio videos
+  - Create videos schema
+  - Push database changes
+  - Create studio procedures
+  - Add video record creation
