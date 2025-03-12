@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { Sidebar, SidebarContent, SidebarGroup, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';

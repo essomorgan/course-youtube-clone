@@ -16,15 +16,15 @@ export const StudioNavbar = () => {
 							<Image src='/logo.svg' width={32} height={32} alt='Logo' />
 							<p className='text-xl font-semibold tracking-tight'>Stduio</p>
 						</div>
-					</Link> 
+					</Link>
 				</div>
 				{/* Spacer */}
-				<div className="flex-1" />
-				
-        <div className="flex-shrink-0 items-center flex gap-4">
+				<div className='flex-1' />
+
+				<div className='flex-shrink-0 items-center flex gap-4'>
 					<StudioUploadModal />
-          <AuthButton />
-        </div>
+					<AuthButton />
+				</div>
 			</div>
 		</nav>
 	);
