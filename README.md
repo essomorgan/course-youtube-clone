@@ -82,3 +82,8 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Add suspense and error boundaries
   - Create reuseable InfiniteScroll component
   - Demonstrate infinite scroll
+- 12 Mux integration
+  - Create a responsive dialog
+  - Create a free Mux account (credit card ==NOT== required.)
+  - Get a [15-second video](https://tinyurl.com/newtube-clip) with english audio
+  - Create an upload modal
