@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](https://www.youtube.com/watch?v=ArmPzvHTcfQ) course.
 
-
+(Part 1)
 - 01 Setup
 	- Configure environment
 		- runtime(Node.js or ==Bun==)
@@ -78,3 +78,7 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Push database changes
   - Create studio procedures
   - Add video record creation
+- 11 Infinite loading
+  - Add suspense and error boundaries
+  - Create reuseable InfiniteScroll component
+  - Demonstrate infinite scroll
