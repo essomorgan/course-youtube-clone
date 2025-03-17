@@ -3,6 +3,7 @@
 import { InfiniteScroll } from '@/components/infinite-scroll';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { DEFAULT_LIMIT } from '@/constants';
+import { VideoThumbnail } from '@/modules/videos/ui/components/video-thumbnail';
 import { trpc } from '@/trpc/client';
 import Link from 'next/link';
 import { Suspense } from 'react';
@@ -49,7 +50,13 @@ export const VideosSectionSuspense = () => {
 							.map((video) => (
 								<Link href={`/studio/videos/${video.id}`} key={video.id} legacyBehavior>
 									<TableRow className='cursor-pointer'>
-										<TableCell>{video.title}</TableCell>
+										<TableCell>
+											<div className='flex items-center gap-4'>
+												<div className='relative aspect-video w-36 shrink-0'>
+													<VideoThumbnail />
+												</div>
+											</div>
+										</TableCell>
 										<TableCell>visibility</TableCell>
 										<TableCell>status</TableCell>
 										<TableCell>date</TableCell>
