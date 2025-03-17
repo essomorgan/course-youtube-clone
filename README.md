@@ -87,3 +87,10 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Create a free Mux account (credit card ==NOT== required.)
   - Get a [15-second video](https://tinyurl.com/newtube-clip) with english audio
   - Create an upload modal
+- 13 Mux webhooks
+  - Update video schema
+  - Push database changes
+  - Handle "video.asset.ready" event (assign thumbnail & preview)
+  - Handle "video.asset.error" event (update status)
+  - Handle "video.asset.deleted" event (delete from database)
+  - Handle "video.asset.track.ready' event (update trackId and trackStatus)
