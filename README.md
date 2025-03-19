@@ -3,8 +3,8 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
 (Part 1)
 - 01 Setup
 	- Configure environment
-		- runtime(Node.js or ==Bun==)
-    - package manager(npm, pnpm, yarn, ==bun==)
+		- runtime(Node.js or **☑️Bun**)
+    - package manager(npm, pnpm, yarn, **☑️bun**)
   - Why bun?
     - You will get the same environment as I do
     - Easily run Typescript scripts with ES6 imports
@@ -39,7 +39,7 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Why DrizzleORM?
     - Only ORM with both reational and SQL-like query APIs
     - Serverless by default
-    - Forcingg us to **understand** our queries
+    - Forcing us to **understand** our queries
 - 05 Webhook sync
   - Create ngrok account (or any other local tunnel solution)
   - Obtain a static domain (not required, but easier development)
@@ -84,7 +84,7 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Demonstrate infinite scroll
 - 12 Mux integration
   - Create a responsive dialog
-  - Create a free Mux account (credit card ==NOT== required.)
+  - Create a free Mux account (credit card **NOT** required.)
   - Get a [15-second video](https://tinyurl.com/newtube-clip) with english audio
   - Create an upload modal
 - 13 Mux webhooks
@@ -98,3 +98,7 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Add skeleton to videos-section
   - Create video form page
   - Add ability to update video information (title, description, category, visibility)
+- 15 Video thumbnails
+  - Integrate UploadThing (a service for better file uploads)
+  - Add thumbnail upload/restore functionality
+  - Refactor thumbnail fields in the schema (Proper UploadThing cleanup)
