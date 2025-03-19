@@ -94,3 +94,7 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Handle "video.asset.error" event (update status)
   - Handle "video.asset.deleted" event (delete from database)
   - Handle "video.asset.track.ready' event (update trackId and trackStatus)
+- 14 Video form
+  - Add skeleton to videos-section
+  - Create video form page
+  - Add ability to update video information (title, description, category, visibility)
