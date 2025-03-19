@@ -73,8 +73,20 @@ export const POST = async (request: Request) => {
         .where(eq(videos.muxUploadId, data.upload_id));
       break;
     }
-    case "video.asset.track.ready":
+    case "video.asset.track.ready": {
+      //Ts incorrectly says that asset_id does not exist
+      const data = payload.data as VideoAssetReadyWebhookEvent['data'] & { asset_id: string };
+      if (!data.asset_id) return new Response("Missing upload ID", { status: 400 });
+
+      await db
+        .update(videos)
+        .set({
+          muxTrackId: data.id,
+          muxTrackStatus: data.status
+        })
+        .where(eq(videos.muxAssetId, data.asset_id));
       break;
+    }
     case "video.asset.deleted": {
       const data = payload.data as VideoAssetDeletedWebhookEvent['data'];
       if (!data.upload_id) return new Response("Missing upload ID", { status: 400 });
