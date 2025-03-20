@@ -1,5 +1,5 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
-import { UploadThingError } from "uploadthing/server";
+import { UploadThingError, UTApi } from "uploadthing/server";
 import { z } from "zod";
 import { auth } from '@clerk/nextjs/server'
 import { db } from "@/db";
@@ -25,13 +25,40 @@ export const ourFileRouter = {
         .from(users)
         .where(eq(users.clerkId, clerkUserId));
       if (!user) throw new UploadThingError('Unauthorized');
+      const [existVideo] = await db
+        .select({
+          thumbnailKey: videos.thumbnailKey,
+        })
+        .from(videos)
+        .where(and(
+          eq(videos.id, input.videoId),
+          eq(videos.userId, user.id),
+        ));
+      if (!existVideo) throw new UploadThingError('Not found');
+      if (existVideo.thumbnailKey) {
+        const utApi = new UTApi();
+        await utApi.deleteFiles(existVideo.thumbnailKey);
+        await db
+          .update(videos)
+          .set({
+            thumbnailKey: null,
+            thumbnailUrl: null,
+          })
+          .where(and(
+            eq(videos.id, input.videoId),
+            eq(videos.userId, user.id),
+          ));
+      }
 
       return { user, ...input };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       await db
         .update(videos)
-        .set({ thumbnailUrl: file.url })
+        .set({
+          thumbnailUrl: file.url,
+          thumbnailKey: file.key,
+        })
         .where(and(
           eq(videos.id, metadata.videoId),
           eq(videos.userId, metadata.user.id),
