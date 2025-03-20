@@ -76,5 +76,34 @@ export const videosRouter = createTRPCRouter({
       if (!removedVideo) throw new TRPCError({ code: 'NOT_FOUND' });
 
       return removedVideo;
-    })
+    }),
+  restoreThumbnail: protectedProcedure
+    .input(z.object({ id: z.string().uuid() }))
+    .mutation(async ({ ctx, input }) => {
+      const { id: userId } = ctx.user;
+      const [existVideo] = await db
+        .select()
+        .from(videos)
+        .where(and(
+          eq(videos.id, input.id),
+          eq(videos.userId, userId)
+        ))
+      if (!existVideo) throw new TRPCError({ code: 'NOT_FOUND' });
+      if (!existVideo.muxPlaybackId) throw new TRPCError({ code: 'BAD_REQUEST' });
+
+      const thumbnailUrl = `https://image.mux.com/${existVideo.muxPlaybackId}/thumbnail.jpg`;
+
+      const [updateVideo] = await db
+        .update(videos)
+        .set({ thumbnailUrl })
+        .where(and(
+          eq(videos.id, input.id),
+          eq(videos.userId, userId),
+        ))
+        .returning();
+
+      if (!updateVideo) throw new TRPCError({ code: "NOT_FOUND" });
+
+      return updateVideo;
+    }),
 });
