@@ -102,3 +102,11 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Integrate UploadThing (a service for better file uploads)
   - Add thumbnail upload/restore functionality
   - Refactor thumbnail fields in the schema (Proper UploadThing cleanup)
+- 16 AI background jobs
+  - Why we need background jobs?
+    - avoid timeout from long-running tasks (problematic with AI generations)
+    - ensures retries in case of failure
+  - Integrate Upstash workflow
+  - Trigger a background job
+  - Setup OpenAI SDK (credit card required, no free trail & credits)
+  - Add background jobs (generate title, description)
