@@ -1,6 +1,7 @@
 import { db } from "@/db";
 import { videos, videoUpdateSchema } from "@/db/schema";
 import { mux } from "@/lib/mux";
+import { workflow } from "@/lib/workflow";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
 import { and, eq } from "drizzle-orm";
@@ -126,5 +127,15 @@ export const videosRouter = createTRPCRouter({
       if (!updateVideo) throw new TRPCError({ code: "NOT_FOUND" });
 
       return updateVideo;
+    }),
+  generateThumbnail: protectedProcedure
+    .mutation(async ({ ctx }) => {
+      const { id: userId } = ctx.user;
+      const { workflowRunId } = await workflow.trigger({
+        url: `${process.env.UPSTASH_WORKFLOW_URL}/api/videos/workflows/title`,
+        body: { userId },
+      });
+
+      return workflowRunId;
     }),
 });
