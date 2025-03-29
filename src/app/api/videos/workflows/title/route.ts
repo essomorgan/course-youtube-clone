@@ -20,7 +20,7 @@ export const { POST } = serve(
         .where(and(
           eq(videos.id, videoId),
           eq(videos.userId, userId),
-        ))
+        ));
     });
   }
 );
