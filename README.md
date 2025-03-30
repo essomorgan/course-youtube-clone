@@ -110,10 +110,15 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Trigger a background job
   - Setup OpenAI SDK (credit card required, no free trail & credits)
   - Add background jobs (generate title, description & thumbnail)
-- 17 Video Page
+- 18 Video Page
   - Create video "getOne" procedure
     - Inner-join "user" (author information)
   - Prefetching process
   - Video section
   - Comments section (placeholder)
   - Suggestions section
+- 19 Video views
+  - Create video views schema
+  - Combine video views for "getOne" videos procedure
+  - Create video views creation procedure
+  - Trigger video view creaction on video play
