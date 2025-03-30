@@ -122,3 +122,8 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Combine video views for "getOne" videos procedure
   - Create video views creation procedure
   - Trigger video view creaction on video play
+- 20 Video reactions
+  - Create video reactions schema
+  - Combine video reactions for "getOne" videos procedure
+  - Create video reactions like & dislike procedure
+  - Connect VideoReactions component with new API
