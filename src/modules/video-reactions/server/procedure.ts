@@ -85,4 +85,4 @@ export const videoReactionsRouter = createTRPCRouter({
 
 			return createdVideoReactionDislike;
 		}),
-})
+});

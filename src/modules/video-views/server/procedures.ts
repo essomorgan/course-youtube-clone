@@ -28,4 +28,4 @@ export const videoViewsRouter = createTRPCRouter({
 
 			return createdVideoView;
 		}),
-})
+});
