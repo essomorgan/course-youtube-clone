@@ -127,3 +127,8 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Combine video reactions for "getOne" videos procedure
   - Create video reactions like & dislike procedure
   - Connect VideoReactions component with new API
+- 21 Subscriptions
+  - Create subscriptions schema
+  - Combine subscriptiosn for "getOne" videos procedure
+  - Create subscriptions procedures
+  - Connect subscirptionButton component with new API
