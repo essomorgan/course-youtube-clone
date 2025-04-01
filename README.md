@@ -132,3 +132,7 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Combine subscriptiosn for "getOne" videos procedure
   - Create subscriptions procedures
   - Connect subscirptionButton component with new API
+- 22 Comments
+  - Create comments shcema
+  - Create comments procedures
+  - Create comments section
