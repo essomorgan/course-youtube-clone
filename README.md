@@ -146,3 +146,10 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Create comment reactions UI
   - Combine "commentReactions" with comments "getMany" procedure
   - Add InfiniteLoading component
+- 25 Comment replies
+  - Extend comment shcema by adding "parentId" foreign key
+  - Create UI for replies
+  - Modify comments "getMnay" procedure by combining parentId
+  - Create variants for "CommentItem" component
+  - Create variants for "CommentForm" component
+  - Create CommentReplies component
