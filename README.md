@@ -141,3 +141,8 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Change prefetch() to prefetchInfinite()
   - Change suspense() to useSuspenseInfiniteQuery()
   - Add InfiniteLoading component
+- 24 Comment reactions
+  - Add "commentReactions" schema
+  - Create comment reactions UI
+  - Combine "commentReactions" with comments "getMany" procedure
+  - Add InfiniteLoading component
