@@ -4,7 +4,7 @@ import { UserAvatar } from '@/components/user-avatar';
 import { formatDistanceToNow } from 'date-fns';
 
 interface CommentItemProps {
-	comment: CommentsGetMantOutput[number];
+	comment: CommentsGetMantOutput['items'][number];
 }
 
 export const CommentItem = ({ comment }: CommentItemProps) => {

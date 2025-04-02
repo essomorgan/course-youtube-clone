@@ -30,7 +30,7 @@ export const studioRouter = createTRPCRouter({
 					id: z.string().uuid(),
 					updatedAt: z.date(),
 				})
-					.nullish(),
+				.nullish(),
 				limit: z.number().min(1).max(100),
 			}),
 		)
@@ -54,21 +54,15 @@ export const studioRouter = createTRPCRouter({
 					)
 				)
 				.orderBy(desc(videos.updatedAt), desc(videos.id))
-				// Add 1 to the limit to check if there is more data.
+				/* Add 1 to the limit to check if there is more data. */
 				.limit(limit + 1);
 
 			const hasMore = data.length > limit;
-
 			// Remove the last item if there is more data.
 			const items = hasMore ? data.slice(0, -1) : data;
-
 			// Set the next curosr to the last item if there is more data.
 			const lastItem = items[items.length - 1];
-			const nextCursor = hasMore ?
-				{
-					id: lastItem.id,
-					updatedAt: lastItem.updatedAt
-				} : null;
+			const nextCursor = hasMore ? { id: lastItem.id, updatedAt: lastItem.updatedAt } : null;
 
 			return { items, nextCursor };
 		}),
