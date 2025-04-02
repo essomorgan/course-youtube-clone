@@ -19,7 +19,7 @@ export const commentReactionsRouter = createTRPCRouter({
 					eq(commentReactions.userId, userId),
 					eq(commentReactions.type, 'like'),
 				));
-			
+
 			if (existCommentReaction) {
 				const [deleteViewerReaction] = await db
 					.delete(commentReactions)
@@ -33,7 +33,6 @@ export const commentReactionsRouter = createTRPCRouter({
 
 				return deleteViewerReaction;
 			}
-console.log(userId, commentId);
 
 			const [createdCommentReaction] = await db
 				.insert(commentReactions)
@@ -43,7 +42,7 @@ console.log(userId, commentId);
 					set: { type: 'like' },
 				})
 				.returning();
-			
+
 			return createdCommentReaction;
 		}),
 	dislike: protectedProcedure
