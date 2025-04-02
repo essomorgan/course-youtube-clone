@@ -136,3 +136,8 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Create comments shcema
   - Create comments procedures
   - Create comments section
+- 23 Comments infinite loading
+  - Modify comments "getMany" procedure
+  - Change prefetch() to prefetchInfinite()
+  - Change suspense() to useSuspenseInfiniteQuery()
+  - Add InfiniteLoading component
