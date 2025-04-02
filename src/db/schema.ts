@@ -19,6 +19,7 @@ export const userRelations = relations(users, ({ many }) => ({
 	subscriptions: many(subscriptions, { relationName: 'subscriptions_viewer_id_fkey' }),
 	subscribers: many(subscriptions, { relationName: 'subscriptions_creator_id_fkey' }),
 	comments: many(comments),
+	commentReactions: many(commentReactions),
 }));
 
 export const categories = pgTable("categories", {
@@ -160,7 +161,7 @@ export const comments = pgTable('comments', {
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
-export const commentRelations = relations(comments, ({ one }) => ({
+export const commentRelations = relations(comments, ({ one, many }) => ({
 	user: one(users, {
 		fields: [comments.userId],
 		references: [users.id],
@@ -169,8 +170,31 @@ export const commentRelations = relations(comments, ({ one }) => ({
 		fields: [comments.videoId],
 		references: [videos.id],
 	}),
+	reactions: many(commentReactions),
 }));
 
 export const commentInsertSchema = createInsertSchema(comments);
 export const commentUpdateSchema = createUpdateSchema(comments);
 export const commentSelectSchema = createSelectSchema(comments);
+
+export const commentReactions = pgTable('comment_reactions', {
+	userId: uuid('user_id').references(() => users.id, { onDelete: 'cascade' }).notNull(),
+	commentId: uuid('comment_id').references(() => comments.id, { onDelete: 'cascade' }).notNull(),
+	type: reactionType('type').notNull(),
+	createAt: timestamp("created_at").defaultNow().notNull(),
+	updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [primaryKey({
+	name: 'comment_reactions_pk',
+	columns: [t.userId, t.commentId],
+})]);
+
+export const commentReactionRelations = relations(commentReactions, ({ one }) => ({
+	users: one(users, {
+		fields: [commentReactions.userId],
+		references: [users.id],
+	}),
+	comments: one(comments, {
+		fields: [commentReactions.commentId],
+		references: [comments.id],
+	}),
+}));
