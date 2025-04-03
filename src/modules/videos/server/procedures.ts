@@ -196,4 +196,42 @@ export const videosRouter = createTRPCRouter({
 
 			return existVideo;
 		}),
+	revalidate: protectedProcedure
+		.input(z.object({ id: z.string().uuid() }))
+		.mutation(async ({ ctx, input }) => {
+			const { id: userId } = ctx.user;
+			const [existVideo] = await db
+				.select()
+				.from(videos)
+				.where(and(
+					eq(videos.id, input.id),
+					eq(videos.userId, userId)
+				))
+			if (!existVideo || !existVideo.muxUploadId) throw new TRPCError({ code: 'NOT_FOUND' });
+
+			const upload = await mux.video.uploads.retrieve(existVideo.muxUploadId);
+			if (!upload || !upload.asset_id) throw new TRPCError({ code: 'NOT_FOUND' });
+
+			const asset = await mux.video.assets.retrieve(upload.asset_id);
+			if (!asset) throw new TRPCError({ code: 'NOT_FOUND' });
+
+			const playbackId = asset.playback_ids?.[0].id;
+			const duration = asset.duration ? Math.round(asset.duration * 1000) : 0;
+
+			const [updateVideo] = await db
+				.update(videos)
+				.set({
+					muxStatus: asset.status,
+					muxPlaybackId: playbackId,
+					muxAssetId: asset.id,
+					duration,
+				})
+				.where(and(
+					eq(videos.id, input.id),
+					eq(videos.userId, userId),
+				))
+				.returning();
+
+			return updateVideo;
+		}),
 });
