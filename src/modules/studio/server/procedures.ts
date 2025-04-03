@@ -30,7 +30,7 @@ export const studioRouter = createTRPCRouter({
 					id: z.string().uuid(),
 					updatedAt: z.date(),
 				})
-				.nullish(),
+					.nullish(),
 				limit: z.number().min(1).max(100),
 			}),
 		)
