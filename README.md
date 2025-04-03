@@ -158,3 +158,12 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Prefetch suggestions
   - Create VideoRowCard & VideoGridCard components
   - Connect Suggestions section with new API
+- 27 Search Results
+  - Add manual video re-validation
+    - in case webhooks failed
+    - in case webhooks fire out of order
+  - Add proper categoryId query to suggestions
+  - Create search procedure
+  - Create search page
+  - Prefetch search page
+  - Connect search section to API
