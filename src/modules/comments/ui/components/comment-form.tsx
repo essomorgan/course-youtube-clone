@@ -12,7 +12,7 @@ import { z } from 'zod';
 
 interface CommentFormProps {
 	videoId: string;
-	parentId: string;
+	parentId?: string;
 	onSuccess?: () => void;
 	onCancel?: () => void;
 	variant?: 'comment' | 'reply';
