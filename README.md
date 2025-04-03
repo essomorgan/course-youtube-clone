@@ -153,3 +153,8 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Create variants for "CommentItem" component
   - Create variants for "CommentForm" component
   - Create CommentReplies component
+- 26 Suggestions
+  - Create suggestions procedure
+  - Prefetch suggestions
+  - Create VideoRowCard & VideoGridCard components
+  - Connect Suggestions section with new API
