@@ -7,7 +7,7 @@ const categoryNames = [
   "Cars and vehicles",
   "Comedy",
   "Education",
-  "Gameing",
+  "Gaming",
   "Entertainment",
   "Flim and animation",
   "How-to and style",
