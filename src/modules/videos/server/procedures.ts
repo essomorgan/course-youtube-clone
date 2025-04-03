@@ -218,6 +218,8 @@ export const videosRouter = createTRPCRouter({
 			const playbackId = asset.playback_ids?.[0].id;
 			const duration = asset.duration ? Math.round(asset.duration * 1000) : 0;
 
+			/* TBD: Potentially find a waay to revalidate trackId and trackStatus as well */
+
 			const [updateVideo] = await db
 				.update(videos)
 				.set({
