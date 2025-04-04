@@ -167,3 +167,8 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Create search page
   - Prefetch search page
   - Connect search section to API
+- 28 Improvements
+  - Resolve complex "VERCEL_URL" env usage
+  - Fix unique constraint issue with manual video revalidation
+  - Add skeleton to search page
+  - Add default values to SearchInput compoent
