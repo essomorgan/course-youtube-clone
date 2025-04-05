@@ -14,11 +14,11 @@ interface ResultsSctionProps {
 	categoryId: string | undefined;
 }
 
-export const ResultSection = (props: ResultsSctionProps) => {
+export const ResultSection = ({ query, categoryId }: ResultsSctionProps) => {
 	return (
-		<Suspense fallback={<ResultsSctionsSkeleton />}>
+		<Suspense key={`${query}-${categoryId}`} fallback={<ResultsSctionsSkeleton />}>
 			<ErrorBoundary fallback={<p>Error...</p>}>
-				<ResultsSectionSuspense {...props} />
+				<ResultsSectionSuspense query={query} categoryId={categoryId} />
 			</ErrorBoundary>
 		</Suspense>
 	);
