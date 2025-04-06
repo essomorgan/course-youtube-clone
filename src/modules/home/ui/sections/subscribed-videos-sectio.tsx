@@ -7,21 +7,17 @@ import { trpc } from '@/trpc/client';
 import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 
-interface HomeVideosSectionProps {
-	categoryId?: string;
-}
-
-export const HomeVideosSection = ({ categoryId }: HomeVideosSectionProps) => {
+export const SubscribedVideosSection = () => {
 	return (
-		<Suspense key={categoryId} fallback={<HomeVideosSectionSkeleton />}>
+		<Suspense fallback={<SubscribedVideosSectionSkeleton />}>
 			<ErrorBoundary fallback={<p>Error...</p>}>
-				<HomeVideosSectionSuspense categoryId={categoryId} />
+				<SubscribedVideosSectionSuspense />
 			</ErrorBoundary>
 		</Suspense>
 	);
 };
 
-const HomeVideosSectionSkeleton = () => {
+const SubscribedVideosSectionSkeleton = () => {
 	return (
 		<div className='gap-4 gap-y-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 [@media(min-width:1920)]:grid-cols-5 [@media(min-width:2200)]:grid-cols-6'>
 			{Array.from({ length: 20 }).map((_, index) => (
@@ -31,10 +27,9 @@ const HomeVideosSectionSkeleton = () => {
 	);
 };
 
-export const HomeVideosSectionSuspense = ({ categoryId }: HomeVideosSectionProps) => {
-	const [videos, query] = trpc.videos.getMany.useSuspenseInfiniteQuery(
+export const SubscribedVideosSectionSuspense = () => {
+	const [videos, query] = trpc.videos.getSubscriptions.useSuspenseInfiniteQuery(
 		{
-			categoryId,
 			limit: DEFAULT_LIMIT,
 		},
 		{
