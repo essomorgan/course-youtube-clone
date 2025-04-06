@@ -172,3 +172,8 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Fix unique constraint issue with manual video revalidation
   - Add skeleton to search page
   - Add default values to SearchInput compoent
+- 29 Home feed
+  - Create videos procedures
+  - Add Home page
+  - Add Trending page
+  - Add Subscriptions page
