@@ -184,3 +184,7 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Create playlists schema
   - Create playlists procedures
   - Create playlists page
+- 32 Populating playlists
+  - Create PlaylistAddModal component
+  - Create "getManyForVideo" playlist procedure
+  - Create add and remove procedure playlist procedures for playlists
