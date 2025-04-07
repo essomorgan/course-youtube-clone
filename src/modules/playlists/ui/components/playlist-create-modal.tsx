@@ -20,11 +20,13 @@ export const PlaylistCreateModal = ({ open, onOpenChange }: PlaylistCreateModalP
 		resolver: zodResolver(formSchema),
 		defaultValues: { name: '' },
 	});
+	const utils = trpc.useUtils();
 	const create = trpc.playlists.create.useMutation({
 		onSuccess: () => {
+			utils.playlists.getMany.invalidate();
+			toast.success('Playlist created');
 			form.reset();
 			onOpenChange(false);
-			toast.success('Playlist created');
 		},
 		onError: () => {
 			toast.error('Something went wrong.');
@@ -45,7 +47,7 @@ export const PlaylistCreateModal = ({ open, onOpenChange }: PlaylistCreateModalP
 							<FormItem>
 								<FormLabel>Prompt</FormLabel>
 								<FormControl>
-									<Input {...field} placeholder='Mt favorite videos' />
+									<Input {...field} placeholder='My favorite videos' />
 								</FormControl>
 								<FormMessage />
 							</FormItem>

@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { PlusIcon } from 'lucide-react';
 import { PlaylistCreateModal } from '../components/playlist-create-modal';
 import { useState } from 'react';
+import { PlaylistsSection } from '../sections/playlists-section';
 
 export const PlaylistsView = () => {
 	const [createModalOpen, setCreateModalOpen] = useState(false);
@@ -14,11 +15,11 @@ export const PlaylistsView = () => {
 					<h1 className='text-2xl font-bold'>Playlists</h1>
 					<p className='text-xs text-muted-foreground'>Collections you have Created</p>
 				</div>
+				<Button variant='outline' size='icon' className='rounded-full' onClick={() => setCreateModalOpen(true)}>
+					<PlusIcon />
+				</Button>
 			</div>
-			<Button variant='outline' size='icon' className='rounded-full' onClick={() => setCreateModalOpen(true)}>
-				<PlusIcon />
-			</Button>
-			{/* <PlaylistsSection /> */}
+			<PlaylistsSection />
 		</div>
 	);
 };
