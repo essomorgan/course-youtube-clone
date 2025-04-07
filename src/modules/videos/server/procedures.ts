@@ -4,7 +4,7 @@ import { mux } from "@/lib/mux";
 import { workflow } from "@/lib/workflow";
 import { baseProcedure, createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
-import { and, desc, eq, getTableColumns, inArray, isNotNull, lt, not, or } from "drizzle-orm";
+import { and, desc, eq, getTableColumns, inArray, isNotNull, lt, or } from "drizzle-orm";
 import { UTApi } from "uploadthing/server";
 import { z } from "zod";
 
