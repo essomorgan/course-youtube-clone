@@ -20,6 +20,7 @@ export const userRelations = relations(users, ({ many }) => ({
 	subscribers: many(subscriptions, { relationName: 'subscriptions_creator_id_fkey' }),
 	comments: many(comments),
 	commentReactions: many(commentReactions),
+	playlists: many(playlists),
 }));
 
 export const categories = pgTable("categories", {
@@ -74,6 +75,7 @@ export const videoRelations = relations(videos, ({ one, many }) => ({
 	views: many(videoViews),
 	reactions: many(videoReactions),
 	comments: many(comments),
+	playlistVideos: many(playlistVideos),
 }));
 
 export const videoViews = pgTable('video_views', {
@@ -214,5 +216,51 @@ export const commentReactionRelations = relations(commentReactions, ({ one }) =>
 	comments: one(comments, {
 		fields: [commentReactions.commentId],
 		references: [comments.id],
+	}),
+}));
+
+export const playlists = pgTable('playlists', {
+	id: uuid('id').primaryKey().defaultRandom(),
+	name: text('name').notNull(),
+	descriptions: text('description'),
+	userId: uuid('user_id').references(() => users.id, { onDelete: 'cascade' }).notNull(),
+	createAt: timestamp("created_at").defaultNow().notNull(),
+	updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const playlistInsertSchema = createInsertSchema(playlists);
+export const playlistUpdateSchema = createUpdateSchema(playlists);
+export const playlistSelectSchema = createSelectSchema(playlists);
+
+export const playlistRelations = relations(playlists, ({ one, many }) => ({
+	users: one(users, {
+		fields: [playlists.userId],
+		references: [users.id],
+	}),
+	playlistVideos: many(playlistVideos),
+}));
+
+export const playlistVideos = pgTable('playlist_videos', {
+	playlistId: uuid('playlist_id').references(() => playlists.id, { onDelete: 'cascade' }).notNull(),
+	videoId: uuid('video_id').references(() => videos.id, { onDelete: 'cascade' }).notNull(),
+	createAt: timestamp("created_at").defaultNow().notNull(),
+	updatedAt: timestamp("updated_at").defaultNow().notNull(),
+}, (t) => [primaryKey({
+	name: 'playlist_videos_pk',
+	columns: [t.playlistId, t.videoId],
+})]);
+
+export const playlistVideoInsertSchema = createInsertSchema(playlistVideos);
+export const playlistVideoUpdateSchema = createUpdateSchema(playlistVideos);
+export const playlistVideoSelectSchema = createSelectSchema(playlistVideos);
+
+export const playlistVideoRelations = relations(playlistVideos, ({ one }) => ({
+	playlist: one(playlists, {
+		fields: [playlistVideos.playlistId],
+		references: [playlists.id],
+	}),
+	video: one(videos, {
+		fields: [playlistVideos.videoId],
+		references: [videos.id],
 	}),
 }));
