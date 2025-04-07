@@ -177,3 +177,6 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Add Home page
   - Add Trending page
   - Add Subscriptions page
+- 30 Playlists
+  - Create playlists proccedures
+  - Create Hisotry & Liked videos pages
