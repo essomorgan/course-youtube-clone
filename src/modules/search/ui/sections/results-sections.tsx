@@ -26,12 +26,12 @@ export const ResultsSection = ({ query, categoryId }: ResultsSctionProps) => {
 const ResultsSctionsSkeleton = () => {
 	return (
 		<div>
-			<div className='hidden flex-col gap-4 md:flex'>
+			<div className='hidden flex-col gap-4 gap-y-10 md:flex'>
 				{Array.from({ length: 5 }).map((_, index) => (
 					<VideoRowCardSkeleton key={index} />
 				))}
 			</div>
-			<div className='flex flex-col gap-4 gap-y-10 pt-6 md:hidden'>
+			<div className='flex flex-col gap-4 md:hidden'>
 				{Array.from({ length: 5 }).map((_, index) => (
 					<VideoGridCardSkeleton key={index} />
 				))}
