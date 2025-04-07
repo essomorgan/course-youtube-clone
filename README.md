@@ -180,3 +180,7 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
 - 30 Playlists
   - Create playlists proccedures
   - Create Hisotry & Liked videos pages
+- 31 Custom playlists
+  - Create playlists schema
+  - Create playlists procedures
+  - Create playlists page
