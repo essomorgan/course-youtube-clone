@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { DEFAULT_LIMIT } from '@/constants';
 import { trpc } from '@/trpc/client';
 import { Loader2Icon, SquareCheckIcon, SquareIcon } from 'lucide-react';
+import { toast } from 'sonner';
 
 interface PlaylistAddModalProps {
 	open: boolean;
@@ -27,6 +28,28 @@ export const PlaylistAddModal = ({ open, onOpenChange, videoId }: PlaylistAddMod
 		utils.playlists.getRelatedPlaylist.reset();
 		onOpenChange(newOpen);
 	};
+	const addVideo = trpc.playlists.addVideo.useMutation({
+		onSuccess: () => {
+			toast.success('Video added to playlist');
+			utils.playlists.getMany.invalidate();
+			utils.playlists.getRelatedPlaylist.invalidate({ videoId });
+			/* TBD: invalidate playlists.getOne */
+		},
+		onError: () => {
+			toast.error('Something went wrong');
+		},
+	});
+	const removeVideo = trpc.playlists.removeVideo.useMutation({
+		onSuccess: () => {
+			toast.success('Video removed from playlist');
+			utils.playlists.getMany.invalidate();
+			utils.playlists.getRelatedPlaylist.invalidate({ videoId });
+			/* TBD: invalidate playlists.getOne */
+		},
+		onError: () => {
+			toast.error('Something went wrong');
+		},
+	});
 
 	return (
 		<ResponsiveModal title='Add to playlist' open={open} onOpenChange={onOpenChange}>
@@ -40,7 +63,18 @@ export const PlaylistAddModal = ({ open, onOpenChange, videoId }: PlaylistAddMod
 					playlists?.pages
 						.flatMap((page) => page.items)
 						.map((playlist) => (
-							<Button key={playlist.id} variant='ghost' className='w-full justify-start px-2 [&_svg]:size-5' size='lg'>
+							<Button
+								key={playlist.id}
+								variant='ghost'
+								className='w-full justify-start px-2 [&_svg]:size-5'
+								size='lg'
+								onClick={() => {
+									playlist.containsVideo
+										? removeVideo.mutate({ playlistId: playlist.id, videoId })
+										: addVideo.mutate({ playlistId: playlist.id, videoId });
+								}}
+								disabled={removeVideo.isPending || addVideo.isPending}
+							>
 								{playlist.containsVideo ? <SquareCheckIcon className='mr-2' /> : <SquareIcon className='mr-2' />}
 								{playlist.name}
 							</Button>
