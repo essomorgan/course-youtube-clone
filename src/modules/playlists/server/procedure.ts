@@ -233,10 +233,12 @@ export const playlistsRouter = createTRPCRouter({
 					),
 					user: users,
 					containsVideo: videoId ?
-						sql<boolean>`SELECT EXISTS(
-							SELECT 1 
-							FROM ${playlistVideos} pv
-							WHERE pv.playlist_id = ${playlists.id} AND pv.video_id =${videoId}
+						sql<boolean>`(
+							SELECT EXISTS(
+								SELECT 1 
+								FROM ${playlistVideos} pv
+								WHERE pv.playlist_id = ${playlists.id} AND pv.video_id =${videoId}
+							)
 						)` : sql<boolean>`false`
 				})
 				.from(playlists)
