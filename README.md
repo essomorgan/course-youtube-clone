@@ -188,3 +188,8 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Create PlaylistAddModal component
   - Create "getManyForVideo" playlist procedure
   - Create add and remove procedure playlist procedures for playlists
+- 33 Individual playlist
+  - Create "getVideos" procedure to load custom playlist's videos
+  - Build custom playlist page
+  - Add ability to delete a playlist
+  - Add ability to remove a video from a palylist
