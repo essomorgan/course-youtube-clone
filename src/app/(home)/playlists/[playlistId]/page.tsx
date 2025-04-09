@@ -11,6 +11,7 @@ export const dynamic = 'force-dynamic';
 const Page = async ({ params }: PageProps) => {
 	const { playlistId } = await params;
 	void trpc.playlists.getRelatedVideos.prefetchInfinite({ limit: DEFAULT_LIMIT, playlistId });
+	void trpc.playlists.getOne.prefetch({ playlistId });
 
 	return (
 		<HydrateClient>
