@@ -96,7 +96,7 @@ export const commentsRouter = createTRPCRouter({
 							),
 						),
 						viewerReaction: viewerReactions.type,
-						replyCount: replies.count
+						replyCount: replies.count,
 					})
 					.from(comments)
 					.where(
