@@ -3,6 +3,8 @@ import { PlaylistsView } from '@/modules/playlists/ui/views/playlists-view';
 import { trpc } from '@/trpc/server';
 import { HydrateClient } from '@/trpc/server';
 
+export const dynamic = 'force-dynamic';
+
 const Page = async () => {
 	void trpc.playlists.getMany.prefetchInfinite({ limit: DEFAULT_LIMIT });
 	return (
