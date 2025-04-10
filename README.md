@@ -198,3 +198,6 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Create "users.getOne" procedure
   - Modify "videos.getMany" procedure to accept userId prop
   - Create userId page
+- 35 Banner upload
+  - Implement "bannerUploader" in uploadthing/core.ts
+  - Create BannerUploadModal
