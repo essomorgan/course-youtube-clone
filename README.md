@@ -205,3 +205,8 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
   - Create subscriptions "getMany" procedure
   - Load recent subscriptiosn in sidebar
   - Create all subscriptions page
+- 37 Final improvemnts
+  - Improve responsive navbar
+  - Protect "videos.getOne" if not public
+  - Conclude "groupBy" debate
+  - Add laoding.tsx pages (Next.js optimizes for loading.tsx
