@@ -41,10 +41,7 @@ export const ourFileRouter = {
 				await utApi.deleteFiles(existVideo.thumbnailKey);
 				await db
 					.update(videos)
-					.set({
-						thumbnailKey: null,
-						thumbnailUrl: null,
-					})
+					.set({ thumbnailKey: null, thumbnailUrl: null })
 					.where(and(
 						eq(videos.id, input.videoId),
 						eq(videos.userId, user.id),
@@ -56,10 +53,7 @@ export const ourFileRouter = {
 		.onUploadComplete(async ({ metadata, file }) => {
 			await db
 				.update(videos)
-				.set({
-					thumbnailUrl: file.url,
-					thumbnailKey: file.key,
-				})
+				.set({ thumbnailUrl: file.url, thumbnailKey: file.key })
 				.where(and(
 					eq(videos.id, metadata.videoId),
 					eq(videos.userId, metadata.user.id),
@@ -87,24 +81,13 @@ export const ourFileRouter = {
 				await utApi.deleteFiles(existingUser.bannerKey);
 				await db
 					.update(users)
-					.set({
-						bannerKey: null,
-						bannerUrl: null,
-					})
-					.where(eq(videos.userId, existingUser.id));
+					.set({ bannerKey: null, bannerUrl: null })
+					.where(eq(users.id, existingUser.id));
 			}
 
 			return { userId: existingUser.id };
 		})
 		.onUploadComplete(async ({ metadata, file }) => {
-			console.log(db
-				.update(users)
-				.set({
-					bannerUrl: file.url,
-					bannerKey: file.key,
-				})
-				.where(eq(videos.userId, metadata.userId)).toSQL());
-
 			await db
 				.update(users)
 				.set({
@@ -112,6 +95,7 @@ export const ourFileRouter = {
 					bannerKey: file.key,
 				})
 				.where(eq(users.id, metadata.userId));
+
 			return { uploadedBy: metadata.userId };
 		}),
 } satisfies FileRouter;
