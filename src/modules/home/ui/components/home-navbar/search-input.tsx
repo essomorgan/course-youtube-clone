@@ -9,7 +9,6 @@ import { useState } from 'react';
 export const SearchInput = () => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const query = searchParams.get('query') || '';
 	const categoryId = searchParams.get('categoryId') || '';
 	const [value, setValue] = useState('');
 	const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,7 +23,6 @@ export const SearchInput = () => {
 		setValue(newQuery);
 		router.push(url.toString());
 	};
-	//TBD: add search functionality
 	return (
 		<form className='flex w-full max-w-[600px]' onSubmit={handleSearch}>
 			<div className='relative w-full'>

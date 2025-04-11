@@ -4,7 +4,6 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 import { ClapperboardIcon, UserCircleIcon, UserIcon } from 'lucide-react';
 
 export const AuthButton = () => {
-	//TBD: add different auth states
 	return (
 		<>
 			<SignedIn>
