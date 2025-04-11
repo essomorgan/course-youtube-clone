@@ -25,6 +25,7 @@ export const ourFileRouter = {
 				.from(users)
 				.where(eq(users.clerkId, clerkUserId));
 			if (!user) throw new UploadThingError('Unauthorized');
+
 			const [existVideo] = await db
 				.select({
 					thumbnailKey: videos.thumbnailKey,
@@ -64,6 +65,54 @@ export const ourFileRouter = {
 					eq(videos.userId, metadata.user.id),
 				));
 			return { uploadedBy: metadata.user.id };
+		}),
+	bannerUploader: f({
+		image: {
+			maxFileSize: "4MB",
+			maxFileCount: 1,
+		},
+	})
+		.middleware(async () => {
+			const { userId: clerkUserId } = await auth();
+			if (!clerkUserId) throw new UploadThingError("Unauthorized");
+
+			const [existingUser] = await db
+				.select()
+				.from(users)
+				.where(eq(users.clerkId, clerkUserId));
+			if (!existingUser) throw new UploadThingError('Unauthorized');
+
+			if (existingUser.bannerKey) {
+				const utApi = new UTApi();
+				await utApi.deleteFiles(existingUser.bannerKey);
+				await db
+					.update(users)
+					.set({
+						bannerKey: null,
+						bannerUrl: null,
+					})
+					.where(eq(videos.userId, existingUser.id));
+			}
+
+			return { userId: existingUser.id };
+		})
+		.onUploadComplete(async ({ metadata, file }) => {
+			console.log(db
+				.update(users)
+				.set({
+					bannerUrl: file.url,
+					bannerKey: file.key,
+				})
+				.where(eq(videos.userId, metadata.userId)).toSQL());
+			
+			await db
+				.update(users)
+				.set({
+					bannerUrl: file.url,
+					bannerKey: file.key,
+				})
+				.where(eq(users.id, metadata.userId));
+			return { uploadedBy: metadata.userId };
 		}),
 } satisfies FileRouter;
 
