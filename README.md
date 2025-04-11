@@ -201,3 +201,7 @@ This is a [Next.js](https://nextjs.org) project from Antonio's [clone youtube ](
 - 35 Banner upload
   - Implement "bannerUploader" in uploadthing/core.ts
   - Create BannerUploadModal
+- 36 Subscriptions list
+  - Create subscriptions "getMany" procedure
+  - Load recent subscriptiosn in sidebar
+  - Create all subscriptions page
