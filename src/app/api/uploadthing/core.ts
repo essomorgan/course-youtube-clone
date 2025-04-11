@@ -104,7 +104,7 @@ export const ourFileRouter = {
 					bannerKey: file.key,
 				})
 				.where(eq(videos.userId, metadata.userId)).toSQL());
-			
+
 			await db
 				.update(users)
 				.set({

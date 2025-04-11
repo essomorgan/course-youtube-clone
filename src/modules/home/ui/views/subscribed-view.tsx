@@ -1,4 +1,4 @@
-import { SubscribedVideosSection } from '../sections/subscribed-videos-sectio';
+import { SubscribedVideosSection } from '../sections/subscribed-videos-section';
 
 export const SubscribedView = () => {
 	return (
