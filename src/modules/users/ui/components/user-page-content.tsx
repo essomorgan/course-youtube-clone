@@ -74,7 +74,7 @@ export const UserPageContent = ({ user }: UserPageContentProps) => {
 				</div>
 				{userId === user.clerkId ? (
 					<Button variant='secondary' asChild className='w-full mt-3 rounded-full'>
-						<Link href='/studio'>Go to Studio</Link>
+						<Link prefetch href='/studio'>Go to Studio</Link>
 					</Button>
 				) : (
 					<SubscriptionButton disabled={isPending || !isLoaded} isSubscribed={user.subscribed} onClick={onClick} className='w-full mt-3' />
@@ -100,7 +100,7 @@ export const UserPageContent = ({ user }: UserPageContentProps) => {
 					</div>
 					{userId === user.clerkId ? (
 						<Button variant='secondary' asChild className='mt-3 rounded-full'>
-							<Link href='/studio'>Go to Studio</Link>
+							<Link prefetch href='/studio'>Go to Studio</Link>
 						</Button>
 					) : (
 						<SubscriptionButton disabled={isPending || !isLoaded} isSubscribed={user.subscribed} onClick={onClick} className='mt-3' />

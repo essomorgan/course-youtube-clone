@@ -17,7 +17,7 @@ export const StudioSidebar = () => {
 						<StudioSidebarHeader />
 						<SidebarMenuItem>
 							<SidebarMenuButton isActive={pathname === '/studio'} tooltip='Content' asChild>
-								<Link href='/studio/' className='gap-4'>
+								<Link prefetch href='/studio/' className='gap-4'>
 									<VideoIcon className='size-5' />
 									<span className='text-sm'>Content</span>
 								</Link>
@@ -26,7 +26,7 @@ export const StudioSidebar = () => {
 						<Separator />
 						<SidebarMenuItem>
 							<SidebarMenuButton tooltip='Exit studio' asChild>
-								<Link href='/' className='gap-4'>
+								<Link prefetch href='/' className='gap-4'>
 									<LogOutIcon className='size-5' />
 									<span className='text-sm'>Exit Studio</span>
 								</Link>
