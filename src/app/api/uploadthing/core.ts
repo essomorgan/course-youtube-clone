@@ -3,7 +3,7 @@ import { UploadThingError, UTApi } from "uploadthing/server";
 import { z } from "zod";
 import { auth } from '@clerk/nextjs/server'
 import { db } from "@/db";
-import { users, videos } from "@/db/schema";
+import { users, videos } from "@/db/local-schema";
 import { and, eq } from "drizzle-orm";
 
 const f = createUploadthing();

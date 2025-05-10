@@ -1,8 +1,8 @@
 import { db } from "@/db";
-import { comments, users, videoReactions, videos, videoViews } from "@/db/schema";
+import { comments, videoReactions, videos, videoViews } from "@/db/local-schema";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
-import { and, count, desc, eq, getTableColumns, lt, or, isNotNull } from "drizzle-orm";
+import { and, desc, eq, getTableColumns, lt, or } from "drizzle-orm";
 import { z } from 'zod';
 
 export const studioRouter = createTRPCRouter({
