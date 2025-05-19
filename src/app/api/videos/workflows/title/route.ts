@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { videos } from "@/db/local-schema";
+import { videos } from "@/db/schema";
 import { serve } from "@upstash/workflow/nextjs"
 import { and, eq } from "drizzle-orm";
 

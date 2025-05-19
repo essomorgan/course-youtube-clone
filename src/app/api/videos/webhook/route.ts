@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { videos } from "@/db/local-schema";
+import { videos } from "@/db/schema";
 import { mux } from "@/lib/mux";
 import { VideoAssetCreatedWebhookEvent, VideoAssetDeletedWebhookEvent, VideoAssetErroredWebhookEvent, VideoAssetReadyWebhookEvent, VideoAssetTrackReadyWebhookEvent } from "@mux/mux-node/resources/webhooks.mjs";
 import { eq } from "drizzle-orm";

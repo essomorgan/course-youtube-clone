@@ -1,5 +1,5 @@
 import { db } from "@/db";
-import { users, videoReactions, videos, videoViews } from "@/db/local-schema";
+import { users, videoReactions, videos, videoViews } from "@/db/schema";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
 import { and, desc, eq, getTableColumns, ilike, lt, or } from "drizzle-orm";
 import { z } from 'zod';
